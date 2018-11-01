@@ -1,13 +1,12 @@
 package com.maia.mvcplus.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /*
  * Autor: Dowglas Maia
@@ -47,10 +46,6 @@ public class Endereco extends AbstractEntity<Long> {
 	@NotBlank(message = "Campo Obrigatório")
 	@Enumerated(EnumType.STRING)
 	private UF uf;
-
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "endereco")
-	private List<Funcionario> funcionarios = new ArrayList<>();
 
 	// Getters e Setters
 	public String getLogradouro() {
@@ -107,14 +102,6 @@ public class Endereco extends AbstractEntity<Long> {
 
 	public void setUf(UF uf) {
 		this.uf = uf;
-	}
-
-	public List<Funcionario> getFuncionarios() {
-		return funcionarios;
-	}
-
-	public void setFuncionarios(List<Funcionario> funcionarios) {
-		this.funcionarios = funcionarios;
 	}
 
 }
