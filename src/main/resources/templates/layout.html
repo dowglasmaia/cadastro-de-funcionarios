@@ -4,7 +4,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-<title>Spring-Boot Básico</title>
+<title> Sistema de Cadastro de Funcionarios</title>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -24,31 +24,34 @@
 
 <body>
 
-	<header>
+	<!-- Cabeçalho da Pagina -->
+	<header th:replace="fragmentos/header :: cabecalho">
 		<div>Header</div>
 	</header>
 
 	<!-- Corpo da Pagina -->
-	<div>
+	<div class="layout-main">
 		<aside>
 			<!-- Menu -->
-			<nav>
+			<nav th:replace="fragmentos/sidebar :: nav-sidbar">
 				<span>Menu</span>
 			</nav>
 
 		</aside>
 
 		<!-- Conteudo -->
-		<section>
+		<section layout:fragment="corpo">
 			<div>Conteudo das Paginas</div>
 
 		</section>
 	</div>
 
 	<!-- Rodape -->
-	<footer>
+	<footer th:replace="fragmentos/footer :: rodape">
 		<div>footer</div>
 	</footer>
+
+
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
