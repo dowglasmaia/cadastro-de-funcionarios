@@ -23,6 +23,8 @@
 		<div class="container" id="listagem">
 
 			<div class="table-responsive">
+			
+			<!-- Tabela de Lista de Departamentos -->
 				<table class="table table-striped table-hover table-sm">
 					<thead>
 						<tr>
@@ -31,10 +33,13 @@
 							<th>Ação</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>3</td>
-							<td>Administração</td>
+					
+					<!-- Lista de Departamentos  -->
+					<tbody>					
+						<tr th:each="d : ${departamentos}">	 <!-- Faz um Foreach para mapear as Colunas da tabela -->					
+							<td th:text="${d.id}"/> <!-- Pega o ID do Departamento Vindo da Base de Dados -->
+							<td th:text="${d.nome}"/> <!-- Pega o Nome do Departamento Vindo da Base de Dados -->
+							
 							<td colspan="2"><a class="btn btn-info btn-sm"
 								href="/departamentos/editar/3" role="button"> <span
 									class="oi oi-brush" title="Editar" aria-hidden="true"></span>
@@ -43,46 +48,13 @@
 									class="btn btn-danger btn-sm">
 									<span class="oi oi-circle-x" title="Exclusão desabilitada"
 										aria-hidden="true"></span>
-								</button></td>
+								</button>
+						  </td>						  
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>Contabilidade</td>
-							<td colspan="2"><a class="btn btn-info btn-sm"
-								href="/departamentos/editar/2" role="button"> <span
-									class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-							</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button></td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Recursos Humanos</td>
-							<td colspan="2"><a class="btn btn-info btn-sm"
-								href="/departamentos/editar/1" role="button"> <span
-									class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-							</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button></td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>Tecnologia da Informação</td>
-							<td colspan="2"><a class="btn btn-info btn-sm"
-								href="/departamentos/editar/4" role="button"> <span
-									class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-							</a>
-								<button type="button" class="btn btn-danger btn-sm">
-									<span class="oi oi-circle-x" title="Exclusão desabilitada"
-										aria-hidden="true"></span>
-								</button></td>
-						</tr>
+						
 					</tbody>
 				</table>
+				
 			</div>
 		</div>
 
