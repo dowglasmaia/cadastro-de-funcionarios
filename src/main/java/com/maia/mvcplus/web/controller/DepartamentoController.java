@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,7 +25,7 @@ public class DepartamentoController {
 
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("departamentos",servives.buscarTodos());
+		model.addAttribute("departamentos", servives.buscarTodos());
 		return "departamento/lista";
 	}
 
@@ -32,6 +33,20 @@ public class DepartamentoController {
 	@PostMapping("/salvar")
 	public String Salvar(Departamento departamento) {
 		servives.salvar(departamento);
+		return "redirect:/departamentos/cadastrar";
+	}
+
+	// Pre Editar - retorna para a pagina de casdastra com o Objeto Instaciado no corpo
+	@GetMapping("/editar/{id}")
+	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("departamento", servives.buscarPorId(id));
+		return "departamento/cadastro";
+	}
+	
+	//Editar - executa ação ao clicar no butão de editar
+	@PostMapping("/editar")
+	public String editar(Departamento departamento) {
+		servives.editar(departamento);
 		return "redirect:/departamentos/cadastrar";
 	}
 
