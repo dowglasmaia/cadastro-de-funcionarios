@@ -36,18 +36,32 @@ public class DepartamentoController {
 		return "redirect:/departamentos/cadastrar";
 	}
 
-	// Pre Editar - retorna para a pagina de casdastra com o Objeto Instaciado no corpo
+	// Pre Editar - retorna para a pagina de casdastra com o Objeto Instaciado no
+	// corpo
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("departamento", servives.buscarPorId(id));
 		return "departamento/cadastro";
 	}
-	
-	//Editar - executa ação ao clicar no butão de editar
+
+	// Editar - executa ação ao clicar no butão de editar
 	@PostMapping("/editar")
 	public String editar(Departamento departamento) {
 		servives.editar(departamento);
 		return "redirect:/departamentos/cadastrar";
 	}
 
+	// Excluir com Condicional, de Verificação se ja tem cargos vinculado ao
+	// Departamento
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+		if (!servives.departamentoTemCargo(id)) {
+			servives.excluir(id);
+		}
+		return listar(model);  // poderia ser feito assim tbm.   "redirect:/departamento/listar";
+	}
+	/*
+	 * @GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+	 * */
 }
