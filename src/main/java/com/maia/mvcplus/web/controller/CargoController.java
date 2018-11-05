@@ -33,7 +33,7 @@ public class CargoController {
 
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("cargo", cgServices.buscarTodos());
+		model.addAttribute("cargos", cgServices.buscarTodos());
 		return "cargo/lista";
 	}
 
