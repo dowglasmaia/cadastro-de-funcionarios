@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /*
@@ -21,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Cargo extends AbstractEntity<Long> {
 
 	@Column(length = 50, nullable = false, unique = true)
-	@NotBlank(message = "Campo Obrigatório")
 	private String nome;
 
 	@ManyToOne

@@ -3,9 +3,8 @@ package com.maia.mvcplus.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;  //( o * informa que todas os inports são da javax.persistence)
-
-import org.hibernate.validator.constraints.NotBlank;
+//( o * informa que todas os inports são da javax.persistence)
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Departamento extends AbstractEntity<Long> {
 
 	@Column(length = 50, nullable =  false, unique = true)
-	@NotBlank(message = "Campo Obrigatório")
 	private String nome;
 
 	@JsonIgnore

@@ -9,6 +9,7 @@
 			<!-- Corpo da Pagina -->
 	    <section class="layout-content" layout:fragment="corpo">
 	
+				<!-- Sub Titulo -->
 	        <nav class="navbar navbar-expand-md bg-light">
 	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 	                <ul class="navbar-nav mr-auto">
@@ -24,25 +25,33 @@
 	            </a>
 	        </nav>
 	
+					<!-- Corpo da Pagina -->
 	        <div class="container" id="cadastro">
-	            <form action="/cargos/salvar" method="POST">
+	        
+	        <!-- Fragmanto de Mensagens -->
+			<div th:replace="fragmentos/alert"></div>
+		
+	            <form th:action="@{/cargos/salvar}" th:object="${cargo}" method="POST">
+	                
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Nome do Cargo</label>
 	                        <input type="text" class="form-control" id="nome" placeholder="Nome Cargo" autofocus="autofocus"
-	                               name="nome" value=""/>
+	                               th:field="*{nome}"/>
 	                    </div>
+	                    
+	                    <!-- Combo-Box de Departamentos -->
 	                    <div class="form-group col-md-4">
 	                        <label for="departamento">Departamento</label>
-	                        <select id="departamento" class="form-control" name="departamento">
+	                        <select id="departamento" class="form-control" th:field="*{departamentos}">
 	                            <option value="">Selecione</option>
-	                            <option value="3">Administração</option>
-	                            <option value="2">Contabilidade</option>
-	                            <option value="1">Recursos Humanos</option>
-	                            <option value="4">Tecnologia da Informação</option>
+	                            
+	                            <option th:each="d : ${departamentos}" 
+	                            		th:value="${d.id}" th:text="${d.nome}"/>             <!-- Faz um for na Variavel departamentos, trazendo os dados do BD -->                            
 	                        </select>
 	                    </div>
 	                </div>
+	                
 	                <input type="hidden" id="id" name="id" value=""/>
 	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 	            </form>
