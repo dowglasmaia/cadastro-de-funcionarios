@@ -25,6 +25,10 @@
 
 		<!-- Formulario da Pagina -->
 		<div class="container" id="cadastro">
+			
+			<!-- Fragmanto de Mensagens -->
+		<div th:replace="fragmentos/alert"></div>
+		
 						<!-- Façamos uma condicional para testar sewo id do departmento e igual ou diferente de nulo -->
 			<form th:action="${departamento.id == null} ? @{/departamentos/salvar} : @{/departamentos/editar}" 	
 				  th:object="${departamento}" method="POST">
