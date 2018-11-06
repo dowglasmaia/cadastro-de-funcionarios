@@ -31,7 +31,7 @@
 	        <!-- Fragmanto de Mensagens -->
 			<div th:replace="fragmentos/alert"></div>
 		
-	            <form th:action="@{/cargos/salvar}" th:object="${cargo}" method="POST">
+	            <form th:action="${cargo.id == null} ? @{/cargos/salvar} : @{/cargos/editar}" th:object="${cargo}" method="POST">
 	                
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
@@ -47,12 +47,14 @@
 	                            <option value="">Selecione</option>
 	                            
 	                            <option th:each="d : ${departamentos}" 
-	                            		th:value="${d.id}" th:text="${d.nome}"/>             <!-- Faz um for na Variavel departamentos, trazendo os dados do BD -->                            
+	                            		th:value="${d.id}" th:text="${d.nome}"/> <!-- Faz um for na Variavel departamentos, trazendo os dados do BD -->                            
 	                        </select>
 	                    </div>
 	                </div>
 	                
-	                <input type="hidden" id="id" name="id" value=""/>
+	                <!-- Recebi o ID do Controller para realizar a opreção de edição -->
+	                <input type="hidden" id="id" th:field="*{id}"/>
+	                
 	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 	            </form>
 	        </div>

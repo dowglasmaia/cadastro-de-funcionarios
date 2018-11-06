@@ -21,6 +21,7 @@ public class Cargo extends AbstractEntity<Long> {
 	@Column(length = 50, nullable = false, unique = true)
 	private String nome;
 
+	@JoinColumn(nullable=false)
 	@ManyToOne
 	private Departamento departamentos;
 

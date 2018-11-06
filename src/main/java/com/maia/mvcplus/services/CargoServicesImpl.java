@@ -15,7 +15,7 @@ import com.maia.mvcplus.interfaces.CargoServices;
 public class CargoServicesImpl implements CargoServices {
 
 	@Autowired
-	private CargoDAOImpl dao; 
+	private CargoDAOImpl dao;
 
 	@Override
 	public void salvar(Cargo cargo) {
@@ -42,6 +42,15 @@ public class CargoServicesImpl implements CargoServices {
 	@Transactional(readOnly = true)
 	public List<Cargo> buscarTodos() {
 		return dao.findAll();
+	}
+
+	//Verificando se o cargo estar vinculado a um funcionario
+	@Override
+	public boolean cargoTemFuncionarios(Long id) {
+		if (buscarPorId(id).getFuncionarios().isEmpty()) {
+			return false;
+		}
+		return true;
 	}
 
 }
