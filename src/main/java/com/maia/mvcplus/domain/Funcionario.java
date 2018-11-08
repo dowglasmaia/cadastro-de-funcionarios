@@ -5,8 +5,6 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 /*
  * Autor: Dowglas Maia
  * Skype: live:dowglasmaia
@@ -19,18 +17,15 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Funcionario extends AbstractEntity<Long> {
 
 	@Column(length = 50,nullable =  false, unique = true)
-	@NotBlank(message = "Campo Obrigatório")
 	private String nome;
 
 	@Temporal(TemporalType.DATE)
-	@NotBlank(message = "Campo Obrigatório")
 	private Date dataAdmissao;
 
 	@Temporal(TemporalType.DATE)
 	private Date dataDemissao;
 
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
-	@NotBlank(message = "Campo Obrigatório")
 	private BigDecimal salario;
 
 	@ManyToOne

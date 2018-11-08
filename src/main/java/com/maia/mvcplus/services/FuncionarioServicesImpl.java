@@ -1,5 +1,6 @@
 package com.maia.mvcplus.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,24 @@ public class FuncionarioServicesImpl implements FuncionarioServices {
 	@Transactional(readOnly = true)
 	public List<Funcionario> buscarTodos() {
 		return dao.findAll();
+	}
+
+	@Override
+	public Object buscarPorNome(String nome) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object buscarPorCargo(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object buscarPorDatas(Date entrada, Date saida) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

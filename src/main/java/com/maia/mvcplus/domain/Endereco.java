@@ -1,12 +1,8 @@
 package com.maia.mvcplus.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-import org.hibernate.validator.constraints.NotBlank;
+
 
 /*
  * Autor: Dowglas Maia
@@ -20,30 +16,24 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Endereco extends AbstractEntity<Long> {
 
 	@Column(length = 50, nullable = false)
-	@NotBlank(message = "Campo Obrigatório")
 	private String logradouro;
 
 	@Column(length = 10, nullable = false)
-	@NotBlank(message = "Campo Obrigatório")
 	private String numero;
 
 	@Column(length = 50, nullable = false)
-	@NotBlank(message = "Campo Obrigatório")
 	private String bairro;
 
 	@Column(length = 12, nullable = false)
-	@NotBlank(message = "Campo Obrigatório")
 	private String cep;
 
 	@Column(length = 50)
 	private String Complemento;
 
 	@Column(length = 50, nullable = false)
-	@NotBlank(message = "Campo Obrigatório")
 	private String Cidade;
 
 	@Column(length = 2, nullable = false)
-	@NotBlank(message = "Campo Obrigatório")
 	@Enumerated(EnumType.STRING)
 	private UF uf;
 
