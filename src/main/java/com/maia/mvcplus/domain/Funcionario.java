@@ -1,9 +1,14 @@
 package com.maia.mvcplus.domain;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -26,10 +31,10 @@ public class Funcionario extends AbstractEntity<Long> {
 	private String nome;
 
 	@DateTimeFormat(iso= ISO.DATE)
-	private Date dataAdmissao;
+	private LocalDate dataAdmissao;
 
 	@DateTimeFormat(iso= ISO.DATE)
-	private Date dataDemissao;
+	private LocalDate dataDemissao;
 
 	@NumberFormat(style = Style.CURRENCY, pattern ="#,##0.00")
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
@@ -51,19 +56,19 @@ public class Funcionario extends AbstractEntity<Long> {
 		this.nome = nome;
 	}
 
-	public Date getDataAdmissao() {
+	public LocalDate getDataAdmissao() {
 		return dataAdmissao;
 	}
 
-	public void setDataAdmissao(Date dataAdmissao) {
+	public void setDataAdmissao(LocalDate dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
 	}
 
-	public Date getDataDemissao() {
+	public LocalDate getDataDemissao() {
 		return dataDemissao;
 	}
 
-	public void setDataDemissao(Date dataDemissao) {
+	public void setDataDemissao(LocalDate dataDemissao) {
 		this.dataDemissao = dataDemissao;
 	}
 
