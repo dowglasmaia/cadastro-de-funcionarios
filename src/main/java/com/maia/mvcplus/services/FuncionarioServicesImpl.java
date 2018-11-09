@@ -53,9 +53,8 @@ public class FuncionarioServicesImpl implements FuncionarioServices {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Object buscarPorCargo(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Funcionario> buscarPorCargo(Long id) {
+		return dao.findByCargo(id);
 	}
 
 	@Override

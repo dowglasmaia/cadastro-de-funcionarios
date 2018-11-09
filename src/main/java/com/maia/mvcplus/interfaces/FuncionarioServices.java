@@ -18,7 +18,7 @@ public interface FuncionarioServices {
 
 	List<Funcionario> buscarPorNome(String nome);
 
-	Object buscarPorCargo(Long id);
+	List<Funcionario> buscarPorCargo(Long id);
 
 	Object buscarPorDatas(Date entrada, Date saida);
 }

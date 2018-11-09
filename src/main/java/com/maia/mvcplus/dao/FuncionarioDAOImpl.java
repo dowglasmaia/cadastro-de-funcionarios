@@ -26,4 +26,9 @@ public class FuncionarioDAOImpl extends AbstractDao<Funcionario, Long> {
 
 	}
 
+	//Buscar Funcionario Por cargo
+	public List<Funcionario> findByCargo(Long id) {		
+		return createQuery("select f from Funcionario f where f.cargo.id = ?1", id);
+	}
+
 }
