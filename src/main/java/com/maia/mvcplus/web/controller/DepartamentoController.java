@@ -1,8 +1,11 @@
 package com.maia.mvcplus.web.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,10 +35,17 @@ public class DepartamentoController {
 
 	// Salvar
 	@PostMapping("/salvar")
-	public String Salvar(Departamento departamento, RedirectAttributes attr) {
+	public String Salvar(@Valid Departamento departamento, BindingResult result, RedirectAttributes attr ) {
+
+		// se der algum erro de validação retorna para a mesma pagina
+		if (result.hasErrors()) {
+			return "departamento/cadastro";
+		}
+
 		servives.salvar(departamento);
 		attr.addFlashAttribute("success", "Departamento Inserido com Sucesso!");
 		return "redirect:/departamentos/cadastrar";
+
 	}
 
 	// Pre Editar - retorna para a pagina de casdastra com o Objeto Instaciado no
@@ -48,7 +58,13 @@ public class DepartamentoController {
 
 	// Editar - executa ação ao clicar no butão de editar
 	@PostMapping("/editar")
-	public String editar(Departamento departamento, RedirectAttributes attr) {
+	public String editar(@Valid Departamento departamento, RedirectAttributes attr, BindingResult result) {
+
+		// se der algum erro de validação retorna para a mesma pagina
+		if (result.hasErrors()) {
+			return "departamento/cadastro";
+		}
+
 		servives.editar(departamento);
 		attr.addFlashAttribute("success", "Departamento Editado com Sucesso!");
 		return "redirect:/departamentos/cadastrar";
@@ -58,13 +74,14 @@ public class DepartamentoController {
 	// Departamento
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+		
 		if (servives.departamentoTemCargo(id)) {
-			model.addAttribute("fail", "Departamento Não Pode ser Removido. Possui Cargo(s) Vinculados" );
-		}else {
+			model.addAttribute("fail", "Departamento Não Pode ser Removido. Possui Cargo(s) Vinculados");
+		} else {
 			servives.excluir(id);
-			model.addAttribute("success", "Departamento Removido Com Sucesso!" );
-		}	
-		return listar(model);  // poderia ser feito assim tbm.   "redirect:/departamento/listar";
+			model.addAttribute("success", "Departamento Removido Com Sucesso!");
+		}
+		return listar(model); // poderia ser feito assim tbm. "redirect:/departamento/listar";
 	}
-	
+
 }

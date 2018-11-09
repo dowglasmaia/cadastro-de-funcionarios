@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,9 +19,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "CARGOS")
 public class Cargo extends AbstractEntity<Long> {
 
+	@NotBlank(message = "Informe o Nome do Cargo")
+	@Size(min = 3, max = 60, message = "O nome do Cargo deve ter entre {min} e {max} caracteres.")
 	@Column(length = 50, nullable = false, unique = true)
 	private String nome;
 
+	@NotNull(message = "Selecione o Departemento relativo ao Cargo.")
 	@JoinColumn(nullable=false)
 	@ManyToOne
 	private Departamento departamentos;

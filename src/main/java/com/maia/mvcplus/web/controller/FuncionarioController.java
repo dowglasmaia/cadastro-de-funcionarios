@@ -3,6 +3,8 @@ package com.maia.mvcplus.web.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -42,7 +44,7 @@ public class FuncionarioController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(Funcionario funcionario, RedirectAttributes attr) {
+	public String salvar(@Valid Funcionario funcionario, RedirectAttributes attr) {
 		funcionarioService.salvar(funcionario);
 		attr.addFlashAttribute("success", "Funcionário inserido com sucesso.");
 		return "redirect:/funcionarios/cadastrar";
@@ -55,7 +57,7 @@ public class FuncionarioController {
 	}
 
 	@PostMapping("/editar")
-	public String editar(Funcionario funcionario, RedirectAttributes attr) {
+	public String editar(@Valid Funcionario funcionario, RedirectAttributes attr) {
 		funcionarioService.editar(funcionario);
 		attr.addFlashAttribute("success", "Funcionário editado com sucesso.");
 		return "redirect:/funcionarios/cadastrar";
@@ -79,6 +81,7 @@ public class FuncionarioController {
 	@GetMapping("/buscar/cargo")
 	public String getPorCargo(@RequestParam("id") Long id, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.buscarPorCargo(id));
+		
 		return "/funcionario/lista";
 	}
 
@@ -87,7 +90,8 @@ public class FuncionarioController {
 	public String getPorDatas(@RequestParam("entrada") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate entrada,
 			@RequestParam("saida") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate saida, ModelMap model, RedirectAttributes attr) {
 		
-		model.addAttribute("funcionarios", funcionarioService.buscarPorDatas(entrada, saida));	
+		model.addAttribute("funcionarios", funcionarioService.buscarPorDatas(entrada, saida));
+				
 		return "/funcionario/lista";
 	}
 

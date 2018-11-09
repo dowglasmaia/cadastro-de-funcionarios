@@ -35,7 +35,7 @@ public class FuncionarioDAOImpl extends AbstractDao<Funcionario, Long> {
 	// Buscar Funcionario Por Data de Entrada e Saida
 	public List<Funcionario> findByDataEntradaSainda(LocalDate entrada, LocalDate saida) {
 		String jpql = new StringBuilder("select f from Funcionario f ")
-				.append("where f.dataAdmissao >= ?1 and f.dataDemissao <= ?2 ")
+				.append("where f.dataAdmissao between ?1 and ?2 ")
 				.append("order by f.dataAdmissao asc")
 				.toString();
 		return createQuery(jpql, entrada, saida);

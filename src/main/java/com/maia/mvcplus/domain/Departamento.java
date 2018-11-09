@@ -5,6 +5,8 @@ import java.util.List;
 
 //( o * informa que todas os inports são da javax.persistence)
 import javax.persistence.*;
+import javax.validation.constraints.*;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,15 +21,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "DEPARTAMENTOS")
 public class Departamento extends AbstractEntity<Long> {
 
+	@NotBlank(message = "Informe um Nome para Departamento")
+	@Size(min = 3, max = 60, message = "O nome do Departamento deve ter entre {min} e {max} caracteres.")
 	@Column(length = 50, nullable =  false, unique = true)
 	private String nome;
 
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "departamentos")
+	@OneToMany(mappedBy = "departamentos")
 	private List<Cargo> cargos = new ArrayList<>();
 
 	// Getters e Setters
-
 	public String getNome() {
 		return nome;
 	}
@@ -37,7 +40,7 @@ public class Departamento extends AbstractEntity<Long> {
 	}
 
 	public List<Cargo> getCargos() {
-		return cargos;
+		return cargos;  
 	}
 
 	public void setCargos(List<Cargo> cargos) {

@@ -2,9 +2,12 @@ package com.maia.mvcplus.web.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +43,12 @@ public class CargoController {
 
 	// Controller Salvar
 	@PostMapping("/salvar")
-	public String salvar(Cargo cargo, RedirectAttributes attr) {
+	public String salvar(@Valid Cargo cargo, BindingResult result, RedirectAttributes attr) {
+		// se der algum erro de validação retorna para a mesma pagina
+		if (result.hasErrors()) {
+			return "cargo/cadastro";
+		}
+		
 		cgServices.salvar(cargo);
 		attr.addFlashAttribute("success", "Cargo Salvo Com Sucesso!");
 		return "redirect:/cargos/cadastrar";
@@ -58,23 +66,29 @@ public class CargoController {
 
 	// Editar - executa ação ao clicar no butão de editar
 	@PostMapping("/editar")
-	public String editar(Cargo cargo, RedirectAttributes attr) {
+	public String editar(@Valid Cargo cargo,BindingResult result, RedirectAttributes attr) {
+
+		// se der algum erro de validação retorna para a mesma pagina
+		if (result.hasErrors()) {
+			return "cargo/cadastro";
+		}
+
 		cgServices.editar(cargo);
 		attr.addFlashAttribute("success", "Departamento Editado com Sucesso!");
 		return "redirect:/cargos/cadastrar";
 	}
-	
+
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-		if(cgServices.cargoTemFuncionarios(id)) {
+
+		if (cgServices.cargoTemFuncionarios(id)) {
 			attr.addFlashAttribute("fail", "Cargo não pode ser excluido. Tem Funcionario(s) vinculados. ");
-		}else {
+		} else {
 			cgServices.excluir(id);
 			attr.addFlashAttribute("success", "Cargo excluido com Sucesso!");
 		}
 		return "redirect:/cargos/listar";
 	}
-	
 
 	// Listar Departamentos para o ComboBox da Pagina
 	@ModelAttribute("departamentos") // variavel declarado no th:field da combobox
