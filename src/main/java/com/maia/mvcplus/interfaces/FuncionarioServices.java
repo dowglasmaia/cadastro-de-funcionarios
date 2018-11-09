@@ -1,6 +1,6 @@
 package com.maia.mvcplus.interfaces;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.maia.mvcplus.domain.Funcionario;
@@ -20,5 +20,5 @@ public interface FuncionarioServices {
 
 	List<Funcionario> buscarPorCargo(Long id);
 
-	Object buscarPorDatas(Date entrada, Date saida);
+	List<Funcionario> buscarPorDatas(LocalDate entrada, LocalDate saida);
 }

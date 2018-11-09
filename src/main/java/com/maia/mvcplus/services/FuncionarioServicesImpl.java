@@ -1,6 +1,7 @@
 package com.maia.mvcplus.services;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class FuncionarioServicesImpl implements FuncionarioServices {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Funcionario> buscarPorNome(String nome) {		
+	public List<Funcionario> buscarPorNome(String nome) {
 		return dao.findByName(nome);
 	}
 
@@ -59,9 +60,16 @@ public class FuncionarioServicesImpl implements FuncionarioServices {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Object buscarPorDatas(Date entrada, Date saida) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Funcionario> buscarPorDatas(LocalDate entrada, LocalDate saida) {
+		if (entrada != null && saida != null) {
+			return dao.findByDataEntradaSainda(entrada, saida); // Retorna com referencia das duas Datas , Entrda e  Saida																
+		} else if (entrada != null) {
+			return dao.finByDataEntrada(entrada); // Retorna com referencia a Data de Entrda
+		} else if (saida != null) {
+			return dao.findByDataSainda(saida); // Retorna com referencia a Data de Saida
+		} else {
+			return new ArrayList<>(); // Retorna uma lista Vazia caso nao seja informada nenhuma Data
+		}
 	}
 
 }
