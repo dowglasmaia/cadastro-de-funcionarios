@@ -69,6 +69,7 @@ public class FuncionarioController {
 	}
 
 	
+	//Buscar Por Nome
 	@GetMapping("/buscar/nome")
 	public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.buscarPorNome(nome));

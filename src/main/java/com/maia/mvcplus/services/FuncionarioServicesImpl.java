@@ -46,18 +46,20 @@ public class FuncionarioServicesImpl implements FuncionarioServices {
 	}
 
 	@Override
-	public Object buscarPorNome(String nome) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional(readOnly = true)
+	public List<Funcionario> buscarPorNome(String nome) {		
+		return dao.findByName(nome);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Object buscarPorCargo(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Object buscarPorDatas(Date entrada, Date saida) {
 		// TODO Auto-generated method stub
 		return null;
