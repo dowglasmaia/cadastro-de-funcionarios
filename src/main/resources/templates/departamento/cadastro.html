@@ -40,7 +40,11 @@
 					<div class="form-group col-md-6">
 						<label for="nome">Departamento</label> 
 						<input type="text"	class="form-control" id="nome" placeholder="Nome Departamento"
-							autofocus="autofocus" th:field="*{nome}" />
+							autofocus="autofocus" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
+						
+						<div class="invalid-feedback">
+							<span th:errors="*{nome}"></span>
+						</div>
 					</div>
 				</div>
 				<input type="hidden" id="id" th:field ="*{id}"  /> <!--  recebe e reeviar o id para com controller -->
