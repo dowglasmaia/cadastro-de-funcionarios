@@ -1,8 +1,8 @@
 package com.maia.mvcplus.domain;
 
 import javax.persistence.*;
-
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /*
  * Autor: Dowglas Maia
@@ -15,24 +15,30 @@ import javax.persistence.*;
 @Table(name = "ENDERECOS")
 public class Endereco extends AbstractEntity<Long> {
 
+	@NotBlank(message = "Campo Obrogatório")
 	@Column(length = 50, nullable = false)
 	private String logradouro;
 
+	@NotBlank(message = "Campo Obrogatório")
 	@Column(length = 10, nullable = false)
 	private String numero;
 
+	@NotBlank(message = "Campo Obrogatório")
 	@Column(length = 50, nullable = false)
 	private String bairro;
 
+	@NotBlank(message = "Campo Obrogatório")
 	@Column(length = 12, nullable = false)
 	private String cep;
 
 	@Column(length = 50)
 	private String Complemento;
 
+	@NotBlank(message = "Campo Obrogatório")
 	@Column(length = 50, nullable = false)
 	private String Cidade;
 
+	@NotNull(message = "Informe uma UF para a Cidade")
 	@Column(length = 2, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private UF uf;
