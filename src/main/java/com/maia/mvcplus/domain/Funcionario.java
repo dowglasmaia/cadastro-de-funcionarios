@@ -14,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
+import org.aspectj.lang.annotation.Before;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat;
@@ -40,6 +41,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	@DateTimeFormat(iso= ISO.DATE)
 	private LocalDate dataAdmissao;
 
+	
 	@DateTimeFormat(iso= ISO.DATE)
 	private LocalDate dataDemissao;
 
