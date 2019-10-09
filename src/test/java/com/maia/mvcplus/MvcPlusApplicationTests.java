@@ -23,12 +23,21 @@ public class MvcPlusApplicationTests {
 	private DepartamentoServicesImpl dpServ;
 
 	@Test
-	@Ignore
+	//@Ignore
 	public void contextLoads() {
 	}
-
+	
 	@Test
-	@Ignore
+	//@Ignore
+	public void salvarDepartamento() {
+		Departamento dp = new Departamento();
+		dp.setNome("TI-987");
+		dpServ.salvar(dp);
+
+	}
+
+	//@Test
+	//@Ignore
 	public void salvarCargo() {
 		Cargo cg = new Cargo();
 		cg.setNome("Desenvolvedor Java Pleno");
@@ -37,13 +46,6 @@ public class MvcPlusApplicationTests {
 
 	}
 
-	@Test
-	@Ignore
-	public void salvarDepartamento() {
-		Departamento dp = new Departamento();
-		dp.setNome("TI");
-		dpServ.salvar(dp);
 
-	}
 
 }
